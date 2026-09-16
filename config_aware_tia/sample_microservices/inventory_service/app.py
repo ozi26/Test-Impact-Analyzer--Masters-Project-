@@ -7,4 +7,4 @@
 # ------------------------------------------------------------------------------
 def check_inventory():
     """Represent an inventory lookup operation."""
-    return "inventory retry"  # Return a simple result representing the operation.
+    return "inventory retry -return result-"  # Return a simple result representing the operation.
