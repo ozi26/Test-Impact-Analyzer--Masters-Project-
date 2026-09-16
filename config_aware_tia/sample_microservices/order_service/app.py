@@ -7,4 +7,4 @@
 # ------------------------------------------------------------------------------
 def checkout():
     """Represent an order checkout request."""
-    return "checkout inventory"  # Return a simple result representing the operation.
+    return "checkout inventory retry"  # Return a simple result representing the operation.
