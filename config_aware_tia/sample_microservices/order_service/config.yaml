@@ -9,7 +9,7 @@ service:
 inventory:
   timeout: 3  # Define the timeout used when calling inventory.
   retry:
-    attempts: 2  # Define the number of inventory retry attempts.
+    attempts: 5  # Define the number of inventory retry attempts.
 
 feature:
   checkout: true  # Enable the checkout feature.
