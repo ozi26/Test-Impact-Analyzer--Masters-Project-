@@ -1,0 +1,53 @@
+// Run the pipeline on any Jenkins agent.
+pipeline {
+    // Define the pipeline stages.
+    agent any
+    // Store simple environment values.
+    environment {
+        // Tell Jenkins where the Python virtual environment is located.
+        VENV = ".venv"
+    }
+    // Define the build and test steps.
+    stages {
+        // Install project dependencies.
+        stage("Install") {
+            // Run shell commands.
+            steps {
+                // Create the environment and install dependencies.
+                sh "python3 -m venv ${VENV} && ${VENV}/bin/pip install -r requirements.txt"
+            }
+        }
+        // Generate runtime configuration dependency information.
+        stage("Trace Tests") {
+            // Run the tracing demonstration.
+            steps {
+                // Execute the sample traced tests.
+                sh "${VENV}/bin/python sample_microservices/run_traced_tests.py"
+            }
+        }
+        // Run the analyzer against the latest Git change.
+        stage("Analyze Change") {
+            // Run the analyzer.
+            steps {
+                // Produce a JSON impact report.
+                sh "${VENV}/bin/python -m analyzer.cli --repo . --tests tests --trace-map trace-map.json --output tia-report.json"
+            }
+        }
+        // Run the selected or normal test suite.
+        stage("Test") {
+            // Run tests selected by the analyzer in a simple demonstration.
+            steps {
+                // Run all tests for the safe baseline comparison.
+                sh "${VENV}/bin/pytest -q"
+            }
+        }
+    }
+    // Archive the analyzer report.
+    post {
+        // Always archive the report when it exists.
+        always {
+            // Keep the report as a Jenkins build artifact.
+            archiveArtifacts artifacts: "tia-report.json,trace-map.json", allowEmptyArchive: true
+        }
+    }
+}

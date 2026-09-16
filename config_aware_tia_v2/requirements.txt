@@ -1,0 +1,9 @@
+# YAML parser used for configuration files.
+PyYAML>=6.0,<7.0
+
+# OpenTelemetry API and SDK used for runtime tracing.
+opentelemetry-api>=1.25,<2.0
+opentelemetry-sdk>=1.25,<2.0
+
+# Pytest is used to run the project's tests.
+pytest>=8.0,<10.0

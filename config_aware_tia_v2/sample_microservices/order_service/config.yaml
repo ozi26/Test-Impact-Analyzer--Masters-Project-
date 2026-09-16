@@ -1,0 +1,15 @@
+# ============================================================================== 
+# Runtime configuration for the sample order service.
+# ============================================================================== 
+
+service:
+  name: order-service  # Give the service a readable name.
+  timeout: 5  # Define the order-service timeout in seconds.
+
+inventory:
+  timeout: 3  # Define the timeout used when calling inventory.
+  retry:
+    attempts: 2  # Define the number of inventory retry attempts.
+
+feature:
+  checkout: true  # Enable the checkout feature.

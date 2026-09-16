@@ -1,0 +1,13 @@
+# ============================================================================== 
+# Runtime configuration for the sample inventory service.
+# ============================================================================== 
+
+service:
+  name: inventory-service  # Give the service a readable name.
+
+retry:
+  attempts: 3  # Define the inventory retry count.
+  backoff_ms: 100  # Define the retry backoff time.
+
+pricing:
+  timeout: 2  # Define the timeout used when calling pricing.

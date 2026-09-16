@@ -1,0 +1,11 @@
+# ============================================================================== 
+# Runtime configuration for the sample pricing service.
+# ============================================================================== 
+
+service:
+  name: pricing-service  # Give the service a readable name.
+
+timeout: 4  # Define the pricing timeout in seconds.
+
+cache:
+  refresh_seconds: 30  # Define the cache refresh interval.

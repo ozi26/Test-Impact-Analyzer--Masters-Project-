@@ -1,0 +1,15 @@
+# Run the analyzer in GitHub Actions.
+name: Configuration-Aware TIA  # Name the workflow.
+on: [push, pull_request]  # Run after pushes and pull requests.
+jobs:  # Define workflow jobs.
+  analyze:  # Create the analyzer job.
+    runs-on: ubuntu-latest  # Use a Linux runner.
+    steps:  # Define job steps.
+      - uses: actions/checkout@v4  # Download the repository.
+      - uses: actions/setup-python@v5  # Install Python.
+        with:  # Configure Python.
+          python-version: "3.12"  # Use the thesis Python version.
+      - run: pip install -r requirements.txt  # Install dependencies.
+      - run: python sample_microservices/run_traced_tests.py  # Build the runtime dependency map.
+      - run: python -m analyzer.cli --repo . --tests tests --trace-map trace-map.json --output tia-report.json  # Run impact analysis.
+      - run: pytest -q  # Run the safe baseline test suite.
